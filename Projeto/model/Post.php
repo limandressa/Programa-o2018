@@ -1,15 +1,15 @@
 <?php
-/**
-	Classe que manipula os dados de categorias
-*/
 
-class Categoria
+class Post
 {
-	//atributos correspondentes aos da tabela categoria
+
 	public $id;
-	public $nome;
-	public $descricao;
-	//variável para a conexão
+	public $titulo;
+	public $texto;
+	public $id_categoria;
+	public $dt_criacao;
+	public $autor;
+
 	private $conexao;
 
 	//sempre que um objeto é instanciado
@@ -41,15 +41,21 @@ class Categoria
 		//retorna o resultado
 		return $resultado;
 	}
- //esse é o meu --------------
+
+
+
 	public function create() {
 		try {
-		$query = "INSERT INTO categoria (id, nome, descricao) values(:id, :nome, :descricao)";
+		$query = "INSERT INTO post (id, titulo, texto, id_categoria, autor, dt_criacao) 
+		values(:id, :titulo, :texto, :id_categoria, :autor, :dt_criacao)";
 		//prepara a execucao
 		$stmt = $this->conexao->prepare($query);
 		$stmt->bindParam('id', $this->id);
-		$stmt->bindParam('nome', $this->nome);
-		$stmt->bindParam('descricao', $this->descricao);
+		$stmt->bindParam('titulo', $this->titulo);
+		$stmt->bindParam('texto', $this->texto);
+		$stmt->bindParam('id_categoria', $this->id_categoria);
+		$stmt->bindParam('autor', $this->autor);
+		$stmt->bindParam('dt_criacao', $this->dt_criacao);
 		//executa a consulta
 		if ($stmt->execute()) {
 			return true;
@@ -65,28 +71,7 @@ class Categoria
 		}
 	}
 
-	/*/tá errado ainda
-	public function update() {
-				
-		$query = "";
-		//prepara a execucao
-		$stmt = $this->conexao->prepare($query);
-		$stmt->bindParam('id', $this->$id);
-		$stmt->bindParam('nome', $this->$nome);
-		$stmt->bindParam('descricao', $this->$descricao);
-	
-		//executa a consulta
-		if ($stmt->execute()) {
-			return true;
-		} else {
-			return false;
-		}
-		
-		////transforma os resultados em um array
-		//$resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		////retorna o resultado
-		//return $resultado;
-	}*/
+
 
 		public function update() {
 		try {
@@ -110,22 +95,6 @@ class Categoria
   		    die("erro com o servidor: " . $e->getMessage());
 		}
 	}
-
-	/*public function delete() {
-		if (isset($id)) {// id tem valor		
-		$query = "DELETE * FROM categoria WHERE id=:id";
-		//prepara a execucao
-		$stmt = $this->conexao->prepare($query);
-		$stmt->bindParam('id', $id);
-		$stmt->execute();
-		//transforma os resultados em um array
-		$resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		//retorna o resultado
-		return $resultado;
-	} 
-		//executa a consulta
-
-	}*/
 
 		public function delete() {
 	

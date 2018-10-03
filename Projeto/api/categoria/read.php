@@ -1,5 +1,4 @@
 <?php
-
 	header('Content-Type: application/json');
 //arquivo para testar o metodo read()
 	include_once '../../config/Conexao.php';
@@ -10,9 +9,15 @@
 
 	$cat = new Categoria($conexao);
 
-	$resultado = $cat->read(); //todos
-//	$resultado = $cat->read(); //só um
+	if (isset($_GET['id'])){
+		$resultado = $cat->read($_GET['id']);	
+	}else{
+		$resultado = $cat->read(); //todos	
+	}
 
-	$resultado = $cat->read($_GET['id']);
-	
-	print_r($resultado);
+	if (sizeof($resultado)>0){
+		echo (json_encode($resultado));	
+	}else{
+		echo (json_encode(['mensagem'=>'Nenhuma categoria cadastrada']));
+	}
+
