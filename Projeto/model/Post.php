@@ -20,16 +20,16 @@ class Post
 	}
 
 	//faz uma consulta e retorna um resultado
-	public function read($id=null) {
-		if (isset($id)) {// id tem valor		
-		$query = "SELECT id, nome, descricao FROM 
-				 categoria WHERE id=:id ORDER BY nome";
+	public function read($id_categoria=null) {
+		if (isset($id_categoria)) {// id tem valor		
+		$query = "SELECT id, id_categoria, dt_criacao, texto, titulo, autor FROM 
+				 post WHERE id_categoria=:id_categoria ORDER BY titulo";
 		//prepara a execucao
 		$stmt = $this->conexao->prepare($query);
-		$stmt->bindParam('id', $id);
-	} if (!isset($id)) {// id nao tem valor	
-		$query = "SELECT id, nome, descricao FROM 
-				 categoria ORDER BY nome";
+		$stmt->bindParam('id_categoria', $id_categoria);
+	} if (!isset($id_categoria)) {// id nao tem valor	
+		$query = "SELECT id, id_categoria, dt_criacao, texto, titulo, autor FROM 
+				 post ORDER BY titulo";
 		//prepara a execucao
 		$stmt = $this->conexao->prepare($query);
 		}
@@ -75,12 +75,15 @@ class Post
 
 		public function update() {
 		try {
-		$query = "UPDATE categoria SET nome=:nome, descricao=:descricao WHERE id=:id";
+		$query = "UPDATE post SET titulo=:titulo, texto=:texto, id_categoria:=id_categoria, autor=:autor, dt_criacao=:dt_criacao WHERE id=:id";
 		//prepara a execucao
 		$stmt = $this->conexao->prepare($query);
 		$stmt->bindParam('id', $this->id);
-		$stmt->bindParam('nome', $this->nome);
-		$stmt->bindParam('descricao', $this->descricao);
+		$stmt->bindParam('titulo', $this->titulo);
+		$stmt->bindParam('texto', $this->texto);
+		$stmt->bindParam('id_categoria', $this->id_categoria);
+		$stmt->bindParam('autor', $this->autor);
+		$stmt->bindParam('dt_criacao', $this->dt_criacao);
 		//executa a consulta
 		if ($stmt->execute()) {
 			return true;

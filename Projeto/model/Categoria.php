@@ -44,7 +44,7 @@ class Categoria
  //esse é o meu --------------
 	public function create() {
 		try {
-		$query = "INSERT INTO categoria (id, nome, descricao) values(:id, :nome, :descricao)";
+		$query = "INSERT INTO categoria (nome, descricao) values(:nome, :descricao)";
 		//prepara a execucao
 		$stmt = $this->conexao->prepare($query);
 		$stmt->bindParam('id', $this->id);

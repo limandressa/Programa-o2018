@@ -40,7 +40,7 @@ CREATE TABLE `post` (
   `texto` varchar(2000) NOT NULL,
   `id_categoria` int(11) NOT NULL,
   `autor` varchar(75) NOT NULL,
-  `dt_criacao` int(8) NOT NULL
+  `dt_criacao` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -86,3 +86,8 @@ ALTER TABLE `post`
 ALTER TABLE `post`
   ADD CONSTRAINT `fk_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`);
 COMMIT;
+
+insert into categoria (nome, descricao) values ('Animais', 'As características dos diversos animais'), ('Esportes', 'Mundo esportivo'), ('Televisão', 'Os programas da televisão')
+INSERT INTO `post` (`id`, `titulo`, `texto`, `id_categoria`, `autor`, `dt_criacao`) VALUES (NULL, 'Os gatos', 'Os gatos são felinos', 1, 'José', '2018-10-04');
+INSERT INTO `post` (`id`, `titulo`, `texto`, `id_categoria`, `autor`, `dt_criacao`) VALUES (NULL, 'O futebol', 'O futebol é um esporte de campo', 2, 'José', '2018-10-04');
+INSERT INTO `post` (`id`, `titulo`, `texto`, `id_categoria`, `autor`, `dt_criacao`) VALUES (NULL, 'Os jornais', 'Os jornais fazem noticias', 3, 'José', '2018-10-04');

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Bloguezinho </title>
+	<style type="text/css">
+
+	* {
+		font-style: 'Roboto'
+	}
+		
+	.container {
+		width: 100vw;
+		height: 100vh;
+		align-items: center;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+	}
+
+	.categorias div {
+		height:100%;
+		width: 33%;
+		background-color: white;
+		border: 1px solid black;
+	}
+
+	.post {
+		width: 90vw;
+		height: 50vh;
+		background-color: lightblue;
+		border: 1px solid black;
+	}
+
+	.categorias {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+		flex-direction: row;
+		font-size: 22px;
+		width: 90vw;
+		height: 6vh;
+		background-color: lightblue;	
+	}
+
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		
+		<div class="categorias"></div>
+		<div class="post">Um titulo de post aqui</div>
+
+	</div>
+
+</body>
+
+<script type="text/javascript">
+	
+	var categorias = document.querySelector("div.categorias");
+	var posts = document.querySelector("div.post");
+		posts.innerHTML = "";
+
+	    async function buscarCat() {
+
+            var request = await fetch('../api/categoria/read.php')
+            var response = await request.json()
+        
+
+            response.forEach(categoria => {
+            	console.log(categoria.id);
+                
+                categorias.innerHTML += "<div data-value="+ categoria.id +">"+ categoria.nome +"</div>"
+
+            })
+        } 
+
+        buscarCat()
+
+        categorias.addEventListener('click', ev => {
+
+        	//console.log(event.target.dataset.value)
+
+	    	async function buscarPost() {
+
+	    	posts.innerHTML = "";
+
+            	var request = await fetch('../api/post/read.php?id_categoria='+event.target.dataset.value+'')
+            	var response = await request.json()
+        
+
+            	response.forEach(post => {
+            	//alert("112");
+            		posts.innerHTML += "<div><h1>"+post.titulo+"</h1><h2>"+post.texto+"</h2></div>"
+
+            	})
+        	} 
+
+        	buscarPost()
+
+        })
+
+</script>
+
+</html>
