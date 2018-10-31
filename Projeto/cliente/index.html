@@ -19,12 +19,25 @@
 		flex-direction: row;
 	}
 
+	.categorias {
+		margin-right: 4%;
+		display: flex;
+		flex-direction: column;
+		font-size: 22px;
+		width: 16%;
+		height: 50vh;
+		background-color: lightblue;
+		border: 1px solid black;	
+	}
 	.categorias div {
 		height:100%;
 		width: 100%;
 		height: 6vh;
-		background-color: white;
-		border: 1px solid black;
+		background-color: white;		
+	}
+
+	.catTitulo {
+		background-color: blue !important;
 	}
 
 	.topo {
@@ -34,28 +47,30 @@
 		width: 100%;
 	}
 
-	.post {
+	.posts {
 		width: 80%;
 		height: 50vh;
 		background-color: lightblue;
 		border: 1px solid black;
 		text-align: left;
 		display: flex;
+		align-items: center;
 		justify-content: center;
 		flex-direction: column;
 		font-size: 22px;
 	}
 
-	.categorias {
-		margin-right: 4%;
-		align-items: center;
-		display: flex;
+	.posts div {
+  		box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+		margin-bottom: 2vh;
+		background-color: white;
+		width: 90%;
+		height: 14vh;
+	}
+
+	.posts div h2 {
 		justify-content: center;
-		flex-direction: column;
-		font-size: 22px;
-		width: 16%;
-		height: 50vh;
-		background-color: lightblue;	
+		text-align: center;
 	}
 
 	</style>
@@ -65,8 +80,10 @@
 
 	<div class="container">
 		
-		<div class="categorias">jhfjghgf</div>
-		<div class="post">Um titulo de post aqui</div>
+		<div class="categorias"><div class="catTitulo"></div></div>
+		<div class="posts">
+
+		</div>
 
 	</div>
 
@@ -75,7 +92,7 @@
 <script type="text/javascript">
 	
 	var categorias = document.querySelector("div.categorias");
-	var posts = document.querySelector("div.post");
+	var posts = document.querySelector("div.posts");
 		//posts.innerHTML = "";
 
 	    async function buscarCat() {
@@ -96,11 +113,11 @@
 
         categorias.addEventListener('click', ev => {
 
-        	//console.log(event.target.dataset.value)
+        	console.log(event.target.dataset.value)
 
 	    	async function buscarPost() {
 
-	    	//posts.innerHTML = "";
+	    	posts.innerHTML = "";
 
             	var request = await fetch('../api/post/read.php?id_categoria='+event.target.dataset.value+'')
             	var response = await request.json()
@@ -108,12 +125,12 @@
 
             	response.forEach(post => {
             	//alert("112");
-            		posts.innerHTML += "<div><h1>"+post.titulo+"</h1><h2>"+post.texto+"</h2></div>"
+            		posts.innerHTML += "<div><h2>"+post.titulo+"</h2><h3>"+post.texto+"</h3></div>"
 
             	})
         	} 
 
-        	//buscarPost()
+        	buscarPost()
 
         })
 
