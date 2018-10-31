@@ -2,10 +2,12 @@
 <html>
 <head>
 	<title> Bloguezinho </title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<style type="text/css">
 
+
 	* {
-		font-style: 'Roboto'
+		font-family: 'Roboto'
 	}
 		
 	.container {
@@ -14,41 +16,56 @@
 		align-items: center;
 		display: flex;
 		justify-content: center;
-		flex-direction: column;
+		flex-direction: row;
 	}
 
 	.categorias div {
 		height:100%;
-		width: 33%;
+		width: 100%;
+		height: 6vh;
 		background-color: white;
 		border: 1px solid black;
 	}
 
+	.topo {
+		background-color: grey;
+		position: fixed;
+		height: 10%;
+		width: 100%;
+	}
+
 	.post {
-		width: 90vw;
+		width: 80%;
 		height: 50vh;
 		background-color: lightblue;
 		border: 1px solid black;
+		text-align: left;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		font-size: 22px;
 	}
 
 	.categorias {
+		margin-right: 4%;
 		align-items: center;
 		display: flex;
 		justify-content: center;
-		flex-direction: row;
+		flex-direction: column;
 		font-size: 22px;
-		width: 90vw;
-		height: 6vh;
+		width: 16%;
+		height: 50vh;
 		background-color: lightblue;	
 	}
 
 	</style>
 </head>
 <body>
+		<div class="topo"></div>
 
 	<div class="container">
 		
-		<div class="categorias"></div>
+		<div class="categorias">jhfjghgf</div>
 		<div class="post">Um titulo de post aqui</div>
 
 	</div>
@@ -59,7 +76,7 @@
 	
 	var categorias = document.querySelector("div.categorias");
 	var posts = document.querySelector("div.post");
-		posts.innerHTML = "";
+		//posts.innerHTML = "";
 
 	    async function buscarCat() {
 
@@ -83,7 +100,7 @@
 
 	    	async function buscarPost() {
 
-	    	posts.innerHTML = "";
+	    	//posts.innerHTML = "";
 
             	var request = await fetch('../api/post/read.php?id_categoria='+event.target.dataset.value+'')
             	var response = await request.json()
@@ -96,7 +113,7 @@
             	})
         	} 
 
-        	buscarPost()
+        	//buscarPost()
 
         })
 
