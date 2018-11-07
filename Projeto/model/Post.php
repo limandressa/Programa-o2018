@@ -101,7 +101,7 @@ class Post
 
 		public function delete() {
 	
-			$query = "DELETE FROM categoria WHERE id=:id";
+			$query = "DELETE FROM post WHERE id=:id";
 			//prepara a execucao
 			$stmt = $this->conexao->prepare($query);
 			$stmt->bindParam('id', $this->id);

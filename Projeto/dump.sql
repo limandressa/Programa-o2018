@@ -88,5 +88,13 @@ ALTER TABLE `post`
 COMMIT;
 
 insert into categoria (nome, descricao) values ('Animais', 'As caracteristicas dos diversos animais'), ('Esportes', 'Mundo esportivo'), ('Televisao', 'Os programas da televisao')
-INSERT INTO `post` (`id`, `titulo`, `texto`, `id_categoria`, `autor`, `dt_criacao`) VALUES (NULL, 'Os gatos', 'Os gatos sao felinos', 1, 'Jose', '2018-10-04'),
+INSERT INTO `post` (`id`, `titulo`, `texto`, `id_categoria`, `autor`, `dt_criacao`) VALUES (NULL, 'Os gatos', 'Lorem ipsum dolor sit amet, euismod definitionem ut cum, te mutat iudicabit argumentum pro, ut per expetenda vulputate. Solet conclusionemque sea an, quo ut labitur eripuit tacimates. In sed consulatu definiebas, an usu melius nominati mediocritatem. Ad fugit soleat graeci vix, doctus voluptaria in eos, rebum mentitum eu vim. Pro id diceret delenit. Ea mei dicta volumus constituam.
+
+In duo adhuc simul vitae, commodo cotidieque pri ea. Vitae hendrerit id mel. Sed albucius mentitum ei, minim audire eu per. Has commodo adipisci mandamus ut, mel ex euismod accusata. His no regione commune dissentiunt, ex dicat omittam pro.
+
+Cu vix wisi nonumy ocurreret. His tale offendit constituam id, mei maiorum dissentias conclusionemque ei. Vis noluisse petentium hendrerit ex, scaevola accusata percipitur nec at. Ius aliquid veritus in, per tantas maiorum petentium ea, an elit quaerendum his. Facilisi vulputate an sit.
+
+Ius ut cibo sale facete, an gubergren abhorreant qui, has ei elitr evertitur. Ei duo posse apeirian, phaedrum voluptaria an sit, iisque persecuti ius id. An adhuc laboramus persequeris mea, et paulo noster delicata ius, mea ex nemore inimicus sententiae. Vim viris ludus luptatum ut, in eius accusata lobortis sit, utinam interesset id vim. Ex dolor prompta mei.
+
+Eu his modo moderatius, ut mei reque porro saepe. Pro at nonumy gubergren pertinacia, unum cibo eum cu, etiam partem at sed. Tale altera eu per, deserunt philosophia pro ei. Nam illum dictas suscipiantur no. Sint scripserit his in, pri timeam complectitur no. Ea natum legendos conclusionemque vim, nam ut paulo apeirian.', 1, 'Jose', '2018-10-04'),
 (NULL, 'O futebol', 'O futebol e um esporte de campo', 2, 'Jose', '2018-10-04'), (NULL, 'Os jornais', 'Os jornais fazem noticias', 3, 'Jose', '2018-10-04');

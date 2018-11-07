@@ -142,6 +142,7 @@
 	
 	var categorias = document.querySelector("div.categorias");
 	var posts = document.querySelector("div.posts");
+	var topo = document.querySelector("div.topo");
 		//posts.innerHTML = "";
 	    async function buscarCat() {
             var request = await fetch('../api/categoria/read.php')
@@ -154,9 +155,27 @@
             })
         } 
         buscarCat()
+
+        async function buscarTodosPosts() {
+        		var request = await fetch('../api/post/read.php')
+            	var response = await request.json()
+        
+            	response.forEach(post => {
+            	//alert("112");
+            		posts.innerHTML += "<div><h2>"+post.titulo+"</h2><h3>"+post.texto+"</h3><h4>Publicado por "+post.autor+" em "+post.dt_criacao+"</h4></div>"
+            	})
+        }
+
+        buscarTodosPosts()
+
+        topo.addEventListener('click', ev => {
+        	posts.innerHTML = "";
+        	buscarTodosPosts()
+        })
+
         categorias.addEventListener('click', ev => {
         	console.log(event.target.dataset.value)
-	    	async function buscarPost() {
+	    	async function buscarPostID() {
 	    	posts.innerHTML = "";
             	var request = await fetch('../api/post/read.php?id_categoria='+event.target.dataset.value+'')
             	var response = await request.json()
@@ -166,7 +185,7 @@
             		posts.innerHTML += "<div><h2>"+post.titulo+"</h2><h3>"+post.texto+"</h3><h4>Publicado por "+post.autor+" em "+post.dt_criacao+"</h4></div>"
             	})
         	} 
-        	buscarPost()
+        	buscarPostID()
         })
 
 </script>
