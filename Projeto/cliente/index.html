@@ -3,6 +3,7 @@
 <head>
 	<title> Bloguezinho </title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<meta charset="utf-8">
 	<style type="text/css">
 
 	* {
@@ -22,38 +23,37 @@
 		align-items: center;
 		display: flex;
 		justify-content: center;
-		flex-direction: column;
+		flex-direction: row;
 	}
 
 	.categorias {
-		overflow: scroll;
-		overflow-y: hidden;
+		direction: rtl;
+		position: fixed;
+		overflow-y: scroll;
+		overflow-x: hidden;
 		text-align: center;
 		align-items: center;
 		justify-content: center;
 		margin-top: 15vh;
-		margin-right: 4%;
-		display: flex;
-		flex-direction: row;
+		left: 1vh;
+		top: 1vh;
+		flex-direction: column;
 		font-size: 22px;
-		width: 90%;
-		padding-left: 4.5vw;
-		margin-left: 4vw;
+		width: 20%;
+		height: 70%;
+		margin-left: 1%;
 	}
 
 	.categorias div {
 		padding: 1vw;
-		padding-right: 3vw;
-		padding-left: 3vw;
 		border-right: 1px solid grey;
 		border-left: 1px solid grey;
-		height: 100%;
-		height: 10%;
+		width: : 100%;
 		background-color: white;		
 	}
 
 	.categorias::-webkit-scrollbar {
-	    height: 1vh;
+	    width: 1vw;
 	}
 	 
 	.categorias::-webkit-scrollbar-track {
@@ -62,23 +62,27 @@
 	 
 	.categorias::-webkit-scrollbar-thumb {
 	  background-color: lightpink;
-	  outline: 1px solid slategrey;
+	  outline: 1px solid white;
 	}
 
 	.topo {
-		background-color: whitesmoke;
-		position: fixed;
-		height: 10vh;
-		width: 100%;
-		text-align: center;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		background-color: whitesmoke !important;
+		position: fixed !important;
+		height: 10vh !important;
+		width: 100% !important;
+		text-align: center !important;
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		padding-left: 0vw !important;
 		font-size: 40px
 	}
 
 	.posts {
-		margin-top: 5vh;
+		overflow: auto;
+		overflow-x: hidden;
+		padding-left: 20vw;
+		margin-top: 15vh;
 		width: 80%;
 		min-height: 50vh;
 		text-align: left;
@@ -94,7 +98,7 @@
   		box-shadow: 1px 3px 6px rgba(0,0,0,0.16), 1px 3px 6px rgba(0,0,0,0.23);
 		margin-bottom: 2vh;
 		background-color: white;
-		width: 90%;
+		width: 70%;
 		padding-left: 2vw;
 		padding-right: 2vw;
 		padding-bottom: 2vh;
@@ -120,7 +124,7 @@
 	</style>
 </head>
 <body>
-		<div class="topo">BLOG IA16</div>
+		<div class="topo">BLOG IA16 PROGRAMAÇÃO</div>
 
 	<div class="container">
 		
@@ -163,6 +167,7 @@
         	} 
         	buscarPost()
         })
+
 </script>
 
 </html>
