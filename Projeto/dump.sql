@@ -87,7 +87,6 @@ ALTER TABLE `post`
   ADD CONSTRAINT `fk_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`);
 COMMIT;
 
-insert into categoria (nome, descricao) values ('Animais', 'As características dos diversos animais'), ('Esportes', 'Mundo esportivo'), ('Televisão', 'Os programas da televisão')
-INSERT INTO `post` (`id`, `titulo`, `texto`, `id_categoria`, `autor`, `dt_criacao`) VALUES (NULL, 'Os gatos', 'Os gatos são felinos', 1, 'José', '2018-10-04');
-INSERT INTO `post` (`id`, `titulo`, `texto`, `id_categoria`, `autor`, `dt_criacao`) VALUES (NULL, 'O futebol', 'O futebol é um esporte de campo', 2, 'José', '2018-10-04');
-INSERT INTO `post` (`id`, `titulo`, `texto`, `id_categoria`, `autor`, `dt_criacao`) VALUES (NULL, 'Os jornais', 'Os jornais fazem noticias', 3, 'José', '2018-10-04');
+insert into categoria (nome, descricao) values ('Animais', 'As caracteristicas dos diversos animais'), ('Esportes', 'Mundo esportivo'), ('Televisao', 'Os programas da televisao')
+INSERT INTO `post` (`id`, `titulo`, `texto`, `id_categoria`, `autor`, `dt_criacao`) VALUES (NULL, 'Os gatos', 'Os gatos sao felinos', 1, 'Jose', '2018-10-04'),
+(NULL, 'O futebol', 'O futebol e um esporte de campo', 2, 'Jose', '2018-10-04'), (NULL, 'Os jornais', 'Os jornais fazem noticias', 3, 'Jose', '2018-10-04');

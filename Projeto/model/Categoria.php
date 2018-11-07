@@ -27,6 +27,7 @@ class Categoria
 		//prepara a execucao
 		$stmt = $this->conexao->prepare($query);
 		$stmt->bindParam('id', $id);
+		
 	} if (!isset($id)) {// id nao tem valor	
 		$query = "SELECT id, nome, descricao FROM 
 				 categoria ORDER BY nome";

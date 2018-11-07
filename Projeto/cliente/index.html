@@ -5,54 +5,84 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<style type="text/css">
 
-
 	* {
 		font-family: 'Roboto'
 	}
+
+	body {
+		margin: 0;
+		background-image: url('http://drthurstone.com/wp-content/uploads/2016/05/background-texture-gradient-light-purple-hd-wallpaper.jpg');
+		background-repeat: no-repeat;
+    	background-attachment: fixed;	
+    }
 		
 	.container {
 		width: 100vw;
-		height: 100vh;
+		height: 100%;
 		align-items: center;
 		display: flex;
 		justify-content: center;
-		flex-direction: row;
+		flex-direction: column;
 	}
 
 	.categorias {
+		overflow: scroll;
+		overflow-y: hidden;
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+		margin-top: 15vh;
 		margin-right: 4%;
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		font-size: 22px;
-		width: 16%;
-		height: 50vh;
-		background-color: lightblue;
-		border: 1px solid black;	
+		width: 90%;
+		padding-left: 4.5vw;
+		margin-left: 4vw;
 	}
+
 	.categorias div {
-		height:100%;
-		width: 100%;
-		height: 6vh;
+		padding: 1vw;
+		padding-right: 3vw;
+		padding-left: 3vw;
+		border-right: 1px solid grey;
+		border-left: 1px solid grey;
+		height: 100%;
+		height: 10%;
 		background-color: white;		
 	}
 
-	.catTitulo {
-		background-color: blue !important;
+	.categorias::-webkit-scrollbar {
+	    height: 1vh;
+	}
+	 
+	.categorias::-webkit-scrollbar-track {
+	    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	}
+	 
+	.categorias::-webkit-scrollbar-thumb {
+	  background-color: lightpink;
+	  outline: 1px solid slategrey;
 	}
 
 	.topo {
-		background-color: grey;
+		background-color: whitesmoke;
 		position: fixed;
-		height: 10%;
+		height: 10vh;
 		width: 100%;
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 40px
 	}
 
 	.posts {
+		margin-top: 5vh;
 		width: 80%;
-		height: 50vh;
-		background-color: lightblue;
-		border: 1px solid black;
+		min-height: 50vh;
 		text-align: left;
+		background-attachment: white;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -61,11 +91,13 @@
 	}
 
 	.posts div {
-  		box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  		box-shadow: 1px 3px 6px rgba(0,0,0,0.16), 1px 3px 6px rgba(0,0,0,0.23);
 		margin-bottom: 2vh;
 		background-color: white;
 		width: 90%;
-		height: 14vh;
+		padding-left: 2vw;
+		padding-right: 2vw;
+		padding-bottom: 2vh;
 	}
 
 	.posts div h2 {
@@ -73,14 +105,26 @@
 		text-align: center;
 	}
 
+	h4 {
+		font-size: 13px;
+	}
+
+	h3 {
+		font-size: 20px;
+	}
+
+	h1 {
+		font-size: 27px;
+	}
+
 	</style>
 </head>
 <body>
-		<div class="topo"></div>
+		<div class="topo">BLOG IA16</div>
 
 	<div class="container">
 		
-		<div class="categorias"><div class="catTitulo"></div></div>
+		<div class="categorias"></div>
 		<div class="posts">
 
 		</div>
@@ -94,46 +138,31 @@
 	var categorias = document.querySelector("div.categorias");
 	var posts = document.querySelector("div.posts");
 		//posts.innerHTML = "";
-
 	    async function buscarCat() {
-
             var request = await fetch('../api/categoria/read.php')
             var response = await request.json()
         
-
             response.forEach(categoria => {
             	console.log(categoria.id);
                 
                 categorias.innerHTML += "<div data-value="+ categoria.id +">"+ categoria.nome +"</div>"
-
             })
         } 
-
         buscarCat()
-
         categorias.addEventListener('click', ev => {
-
         	console.log(event.target.dataset.value)
-
 	    	async function buscarPost() {
-
 	    	posts.innerHTML = "";
-
             	var request = await fetch('../api/post/read.php?id_categoria='+event.target.dataset.value+'')
             	var response = await request.json()
         
-
             	response.forEach(post => {
             	//alert("112");
-            		posts.innerHTML += "<div><h2>"+post.titulo+"</h2><h3>"+post.texto+"</h3></div>"
-
+            		posts.innerHTML += "<div><h2>"+post.titulo+"</h2><h3>"+post.texto+"</h3><h4>Publicado por "+post.autor+" em "+post.dt_criacao+"</h4></div>"
             	})
         	} 
-
         	buscarPost()
-
         })
-
 </script>
 
 </html>
