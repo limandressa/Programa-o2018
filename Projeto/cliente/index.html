@@ -15,6 +15,7 @@
 		background-image: url('http://drthurstone.com/wp-content/uploads/2016/05/background-texture-gradient-light-purple-hd-wallpaper.jpg');
 		background-repeat: no-repeat;
     	background-attachment: fixed;	
+    	overflow-x: hidden
     }
 		
 	.container {
@@ -40,9 +41,12 @@
 		flex-direction: column;
 		font-size: 22px;
 		width: 20%;
-		height: 70%;
+		height: 50%;
 		margin-left: 1%;
+		box-shadow: 1px 3px 6px rgba(0,0,0,0.16), 1px 3px 6px rgba(0,0,0,0.23);
 	}
+
+
 
 	.categorias div {
 		border-bottom: 1px solid grey;
@@ -83,16 +87,36 @@
 		overflow: auto;
 		overflow-x: hidden;
 		padding-left: 20vw;
-		margin-top: 15vh;
+		margin-top: 16vh;
 		width: 80%;
-		min-height: 50vh;
+		min-height: 50vh;		
+		font-size: 22px;
+	}
+
+	.posts, .tempo {
 		text-align: left;
 		background-attachment: white;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		flex-direction: column;
-		font-size: 22px;
+	}
+
+	.tempo {
+		position: fixed;
+		align-items: center;
+		justify-content: center;
+		margin-top: 70vh;
+		left: 1vh;
+		top: 1vh;
+		flex-direction: column;
+		font-size: 15px;
+		width: 20%;
+		height: 25vh;
+		margin-left: 1%;
+		padding-left: 1px;
+		box-shadow: 1px 3px 6px rgba(0,0,0,0.16), 1px 3px 6px rgba(0,0,0,0.23);
+		background-color: white
 	}
 
 	.posts div {
@@ -130,6 +154,7 @@
 	<div class="container">
 		
 		<div class="categorias"></div>
+		<div class="tempo"></div>
 		<div class="posts">
 
 		</div>
@@ -143,6 +168,7 @@
 	var categorias = document.querySelector("div.categorias");
 	var posts = document.querySelector("div.posts");
 	var topo = document.querySelector("div.topo");
+	var tempo = document.querySelector("div.tempo");
 		//posts.innerHTML = "";
 	    async function buscarCat() {
             var request = await fetch('../api/categoria/read.php')
@@ -156,6 +182,25 @@
         } 
         buscarCat()
 
+        async function getPrevisao(lat, lon){
+				let request = await fetch("http://api.openweathermap.org/data/2.5/weather?lat="+ lat +"&lon="+ lon +"&units=metric&lang=pt&APPID=c144ba4eaa5f0aebc01c661169701dc7");
+				//let request = await fetch("http://api.openweathermap.org/data/2.5/weather?lat=-26.9911&lon=-48.6352&units=metric&lang=pt&APPID=c144ba4eaa5f0aebc01c661169701dc7");
+				let previsao = await request.json();
+
+           		//posts.innerHTML += "<div><h2>"+previsao.name+"</h2><h3>"+previsao.temp+"</h3><h4>Publicado por</h4></div>"
+            	tempo.innerHTML += "<div><h2>"+previsao.name+" ☀️ </h2><h3>Temperatura "+previsao.main.temp+" °C</h3><h3>Temperatura máxima "+previsao.main.temp_max+" °C</h3><h3>Temperatura mínima "+previsao.main.temp_min+" °C</h3></div>"
+		}
+
+		//getPrevisao('-26.9991', '-48.6352') //depois seria pegar localizacao do navegador
+
+		function localizacao(){
+			navigator.geolocation.getCurrentPosition(coordenadas => {
+				getPrevisao(coordenadas.coords.latitude, coordenadas.coords.longitude)
+			})
+		}
+
+		localizacao()
+
         async function buscarTodosPosts() {
         		var request = await fetch('../api/post/read.php')
             	var response = await request.json()
@@ -166,11 +211,12 @@
             	})
         }
 
-        buscarTodosPosts()
+        buscarTodosPosts() 
 
         topo.addEventListener('click', ev => {
         	posts.innerHTML = "";
         	buscarTodosPosts()
+
         })
 
         categorias.addEventListener('click', ev => {
